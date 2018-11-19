@@ -1,0 +1,185 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Nov 17 23:22:16 2018",
+    "version": "eosio::abi/1.0",
+    "structs": [
+        {
+            "name": "addsponsors",
+            "base": "",
+            "fields": [
+                {
+                    "name": "sponsor",
+                    "type": "name"
+                },
+                {
+                    "name": "dealId",
+                    "type": "uint64"
+                },
+                {
+                    "name": "coSponsors",
+                    "type": "name[]"
+                }
+            ]
+        },
+        {
+            "name": "deal",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "sponsor",
+                    "type": "name"
+                },
+                {
+                    "name": "contractor",
+                    "type": "name"
+                },
+                {
+                    "name": "arbiter",
+                    "type": "name"
+                },
+                {
+                    "name": "coSponsors",
+                    "type": "name[]"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                },
+                {
+                    "name": "amount",
+                    "type": "asset"
+                },
+                {
+                    "name": "no_of_sponsors",
+                    "type": "uint64"
+                },
+                {
+                    "name": "threshold",
+                    "type": "uint64"
+                },
+                {
+                    "name": "timeout_of_funding",
+                    "type": "uint64"
+                },
+                {
+                    "name": "timeout_of_acceptance",
+                    "type": "uint64"
+                },
+                {
+                    "name": "payout_schedule",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "payout_term",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "deposit",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "dealId",
+                    "type": "uint64"
+                },
+                {
+                    "name": "sponsor",
+                    "type": "name"
+                },
+                {
+                    "name": "amount",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "initiatedeal",
+            "base": "",
+            "fields": [
+                {
+                    "name": "sponsor",
+                    "type": "name"
+                },
+                {
+                    "name": "contractor",
+                    "type": "name"
+                },
+                {
+                    "name": "arbiter",
+                    "type": "name"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                },
+                {
+                    "name": "amount",
+                    "type": "asset"
+                },
+                {
+                    "name": "no_of_sponsors",
+                    "type": "uint64"
+                },
+                {
+                    "name": "threshold",
+                    "type": "uint64"
+                },
+                {
+                    "name": "timeout_of_funding",
+                    "type": "uint64"
+                },
+                {
+                    "name": "timeout_of_acceptance",
+                    "type": "uint64"
+                },
+                {
+                    "name": "payout_schedule",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "payout_term",
+                    "type": "uint64"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "addsponsors",
+            "type": "addsponsors",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "initiatedeal",
+            "type": "initiatedeal",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "deals",
+            "type": "deal",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "deposits",
+            "type": "deposit",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "abi_extensions": []
+}
