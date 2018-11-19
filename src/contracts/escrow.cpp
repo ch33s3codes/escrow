@@ -59,9 +59,11 @@ ACTION escrow::checkdeposit(name from, name to, asset quantity, string memo)
 
     eosio_assert(isNumeric(memo), "the memo needs to represent the claim ID");
 
-    escrow::get_payable(1);
-
     uint64_t dealId = std::stoi(memo);
+
+    escrow::get_payable(dealId);
+
+    // TODO - Create asset, and assert (that the amount contributed should not exceed the cap)
     if (from != _self)
     {
         _deposits.emplace(get_self(), [&](auto &dep) {
