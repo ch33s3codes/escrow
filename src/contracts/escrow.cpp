@@ -1,16 +1,18 @@
 #include "escrow.hpp"
 
 ACTION escrow::initiatedeal(name sponsor, name contractor,
-                          name arbiter, string memo, asset amount,
-                          uint64_t no_of_sponsors, uint64_t threshold,
-                          time_point_sec timeout_of_funding, time_point_sec timeout_of_acceptance,
-                          vector<uint64_t> payout_schedule, time_point_sec payout_term)
+                            name arbiter, string memo, asset amount,
+                            uint64_t no_of_sponsors, uint64_t threshold,
+                            uint64_t timeout_of_funding, uint64_t timeout_of_acceptance,
+                            vector<uint64_t> payout_schedule, uint64_t payout_term)
 {
     eosio_assert(is_account(contractor), "enter a valid EOS account");
     eosio_assert(is_account(arbiter), "arbitrators must be a valid EOS account holders");
 
     require_auth(sponsor);
-
+    int64_t payable = escrow::get_payable(1);
+    asset p = asset(150);
+    print(p);
     _deals.emplace(get_self(), [&](auto &d) {
         d.id = _deals.available_primary_key();
         d.sponsor = sponsor;
@@ -31,6 +33,7 @@ ACTION escrow::addsponsors(name sponsor, uint64_t &dealId, std::vector<name> coS
 {
     require_auth(sponsor);
     eosio_assert(coSponsors.size() > 0, "this action requires at least one cosponsor");
+    escrow::get_payable(1);
 
     auto i = _deals.find(dealId);
     if (i != _deals.end())
@@ -55,6 +58,8 @@ ACTION escrow::checkdeposit(name from, name to, asset quantity, string memo)
     eosio_assert(quantity.symbol == EOS_SYMBOL, "only EOS tokens allowed"); // TODO - Handle other tokens as well. Dont Lock to EOS alone.
 
     eosio_assert(isNumeric(memo), "the memo needs to represent the claim ID");
+
+    escrow::get_payable(1);
 
     uint64_t dealId = std::stoi(memo);
     if (from != _self)
